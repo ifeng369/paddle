@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: windows-2022,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.10.1.4,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
-          # - { os: ubuntu-22.04,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.10.1.4,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
+          - { os: windows-2022,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
+          - { os: ubuntu-22.04,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -112,14 +112,13 @@ jobs:
         cd ./paddle-src/build
         ninja all
 
-    - name: Show build files
-      shell: bash
-      run: |
-        ls -lR ./paddle-src/build
+    # - name: Show build files
+    #   shell: bash
+    #   run: |
+    #     ls -lR ./paddle-src/build
 
     - name: Upload paddle_inference
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.os }}_cpp_${{ matrix.name }}
         path: ./paddle-src/build/python/dist/*
-
