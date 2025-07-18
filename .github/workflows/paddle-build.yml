@@ -12,8 +12,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: windows-2022,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.10.1.4, cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
+          - { os: windows-2022,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.10.1.4,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
     steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python }}
     - name: Setup dependencies
       shell: bash
       run: |
