@@ -26,7 +26,7 @@ jobs:
           pip install numpy protobuf wheel ninja
         fi
 
-    - uses: Jimver/cuda-toolkit@v0.2.24
+    - uses: Jimver/cuda-toolkit@v0.2.26
       if: ${{ matrix.cuda != '' }}
       id: cuda-toolkit
       with:
