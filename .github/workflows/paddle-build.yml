@@ -103,7 +103,7 @@ jobs:
         cmake .. -GNinja `
           ${{ matrix.cmake_flags }} `
           -DON_INFER=ON `
-          -DWITH_PYTHON=OFF `
+          -DWITH_PYTHON=ON `
           -DWITH_UNITY_BUILD=ON
 
     - name: Build with Ninja
