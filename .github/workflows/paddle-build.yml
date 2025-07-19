@@ -73,7 +73,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: PaddlePaddle/Paddle
-        ref: ${{ env.PADDLE_BRANCH }}
+        ref: "develop"
         path: paddle-src
 
     - uses: ilammy/msvc-dev-cmd@v1
