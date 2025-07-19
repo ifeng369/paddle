@@ -94,6 +94,9 @@ jobs:
       run: |
         pip install -r ./paddle-src/python/requirements.txt
         mkdir ./paddle-src/build
+        mkdir ./paddle-src/build/paddle/phi/ops/yaml/inconsistent
+        mkdir ./paddle-src/build/paddle/phi/ops/yaml/legacy
+
         cd ./paddle-src/build
         cmake .. -GNinja ${{ matrix.cmake_flags }}
 
