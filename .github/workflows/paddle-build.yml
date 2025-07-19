@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: windows-2019, name: win_cu129_cudnn99_sm120, cuda: 12.9.1, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_UNITY_BUILD=ON -DWITH_DISTRIBUTE=ON" }
+          - { os: windows-2022, name: win_cu129_cudnn99_sm120, cuda: 12.9.1, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_UNITY_BUILD=ON -DWITH_DISTRIBUTE=ON" }
           # - { os: ubuntu-22.04,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
     steps:
     - uses: actions/setup-python@v5
