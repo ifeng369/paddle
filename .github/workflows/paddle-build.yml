@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: windows-2022, name: win_cu129_cudnn99_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_SHARED_PHI=ON -DCUDA_ARCH_NAME=Manual -DON_INFER=ON -DCUDA_ARCH_BIN=120 -DWITH_UNITY_BUILD=ON" }
-          # - { os: ubuntu-22.04,     name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=\"120\" -DWITH_ONNXRUNTIME=ON" }
+          # - { os: windows-2022, name: win_cu129_cudnn99_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_SHARED_PHI=ON -DCUDA_ARCH_NAME=Manual -DON_INFER=ON -DCUDA_ARCH_BIN=120 -DWITH_UNITY_BUILD=ON" }
+          - { os: ubuntu-24.04, name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_SHARED_PHI=ON -DCUDA_ARCH_NAME=Manual -DON_INFER=ON -DCUDA_ARCH_BIN=120 -DWITH_UNITY_BUILD=ON" }
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -36,13 +36,13 @@ jobs:
         cuda: ${{ matrix.cuda }}
         # Windows sub-packages are kind of different, so we need to handle them separately
         # https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html
-        # sub-packages: ${{ matrix.os == 'ubuntu-22.04' && 
+        # sub-packages: ${{ matrix.os == 'ubuntu-24.04' && 
         #   '["nvcc"]' || 
         #   '["nvcc", "cublas", "cublas_dev", "cudart", "cufft", "cufft_dev", "curand", "curand_dev", 
         #     "cusparse", "cusparse_dev", "cusolver", "cusolver_dev", "nvrtc", "nvrtc_dev", 
         #     "cuda_profiler_api", "nvjpeg", "nvjpeg_dev", "thrust"]' 
         #   }}
-        # non-cuda-sub-packages: ${{ matrix.os == 'ubuntu-22.04' && 
+        # non-cuda-sub-packages: ${{ matrix.os == 'ubuntu-24.04' && 
         #   '["libcublas", "libcublas-dev", "libcufft", "libcufft-dev", "libcurand", "libcurand-dev", 
         #     "libcusparse", "libcusparse-dev", "libcusolver", "libcusolver-dev", "libnvrtc", 
         #     "libnvrtc-dev", "profiler_api", "libthrust"]' || 
