@@ -61,7 +61,7 @@ jobs:
         wget --no-verbose https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
         tar -zxf cmake-3.18.0-Linux-x86_64.tar.gz
         rm cmake-3.18.0-Linux-x86_64.tar.gz
-        export PATH=/home/runner/work/paddle/paddle/cmake-3.18.0-Linux-x86_64/bin:$PATH
+        sudo cp -r cmake-3.18.0-Linux-x86_64/* /usr/local/
         cmake --version
 
         wget --no-verbose https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
