@@ -52,6 +52,12 @@ jobs:
         sudo cp -r lib/libcudnn* /usr/lib/x86_64-linux-gnu
         sudo cp -r lib /usr
 
+        cd ..
+        rm cuda-ubuntu2404.pin
+        rm cuda-repo-ubuntu2404-12-9-local_12.9.1-575.57.08-1_amd64.deb
+        rm cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
+        rm -rf cudnn-linux-x86_64-9.9.0.52_cuda12-archive
+
     - name: Checkout Paddle repo
       uses: actions/checkout@v4
       with:
