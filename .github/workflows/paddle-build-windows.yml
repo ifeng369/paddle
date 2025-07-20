@@ -5,7 +5,7 @@ name: paddle-build-windows
 on: 
   push:
     paths: 
-      - '*-windows.yml'
+      - '.github/workflows/paddle-build-windows.yml'
 
 env:
   PADDLE_VERSION: "3.1.0"
