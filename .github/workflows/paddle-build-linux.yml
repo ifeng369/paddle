@@ -72,28 +72,19 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install cuda-toolkit-12-9
 
-    - name: Download cuDNN
-      if: ${{ matrix.cudnn != '' }}
-      shell: pwsh
-      run: |
-        $cudaMajor = '${{ matrix.cuda }}'.Split('.')[0]
-        echo "Downloading cuDNN for CUDA $cudaMajor and cuDNN ${{ matrix.cudnn }}..."
-        if ("${{ runner.os }}" -eq "Linux") {
-          Invoke-WebRequest -Uri https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-${{ matrix.cudnn }}_cuda$cudaMajor-archive.tar.xz -OutFile cudnn.tar.xz
-          mkdir cudnn && tar -xf cudnn.tar.xz --strip-components=1 -C cudnn
 
-          sudo cp cudnn/include/* ${{env.CUDA_PATH}}/include/
-          sudo cp cudnn/lib/* ${{env.CUDA_PATH}}/lib64/
-        } elseif ("${{ runner.os }}" -eq "Windows") {
-          Invoke-WebRequest -Uri https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-${{ matrix.cudnn }}_cuda$cudaMajor-archive.zip -OutFile cudnn.zip
-          mkdir cudnn && tar -xf cudnn.zip --strip-components=1 -C cudnn
+        wget --no-verbose https://developer.download.nvidia.cn/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
+        tar xJf cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
+        cd cudnn-linux-x86_64-9.9.0.52_cuda12-archive
 
-          cp -Recurse -Force cudnn\* "${{env.CUDA_PATH}}"
-        }
-    
-        echo "::group:: cuDNN files"
-        Get-ChildItem -Recurse cudnn
-        echo "::endgroup::"
+        sudo cp include/* ${{env.CUDA_PATH}}/include/
+        sudo cp lib/* ${{env.CUDA_PATH}}/lib64/
+     
+        cd ..
+        rm -f cuda-repo-ubuntu2404-12-9-local_12.9.1-575.57.08-1_amd64.deb
+        rm -f cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
+        rm -rf cudnn-linux-x86_64-9.9.0.52_cuda12-archive
+
     - name: Checkout Paddle repo
       uses: actions/checkout@v4
       with:
