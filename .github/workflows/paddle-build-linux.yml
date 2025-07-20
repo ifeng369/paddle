@@ -47,10 +47,10 @@ jobs:
         wget --no-verbose https://developer.download.nvidia.cn/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         tar xJvf cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         cd cudnn-linux-x86_64-9.9.0.52_cuda12-archive
-        cp -r include /usr
-        mkdir -p /usr/lib/x86_64-linux-gnu
-        cp -r lib/libcudnn* /usr/lib/x86_64-linux-gnu
-        cp -r lib /usr
+        sudo cp -r include /usr
+        sudo mkdir -p /usr/lib/x86_64-linux-gnu
+        sudo cp -r lib/libcudnn* /usr/lib/x86_64-linux-gnu
+        sudo cp -r lib /usr
 
     - name: Checkout Paddle repo
       uses: actions/checkout@v4
