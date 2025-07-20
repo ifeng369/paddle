@@ -79,7 +79,7 @@ jobs:
         wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
         tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
         rm cmake-3.18.0-Linux-x86_64.tar.gz
-        export PATH=/root/cmake-3.18.0-Linux-x86_64/bin:$PATH
+        export PATH=/home/runner/work/paddle/paddle/cmake-3.18.0-Linux-x86_64/bin:$PATH
 
     - name: Checkout Paddle repo
       uses: actions/checkout@v4
