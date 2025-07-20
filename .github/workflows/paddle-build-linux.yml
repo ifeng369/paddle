@@ -71,18 +71,16 @@ jobs:
         sudo cp /var/cuda-repo-ubuntu2404-12-9-local/cuda-*-keyring.gpg /usr/share/keyrings/
         sudo apt-get update
         sudo apt-get -y install cuda-toolkit-12-9
+        rm cuda-repo-ubuntu2404-12-9-local_12.9.1-575.57.08-1_amd64.deb
 
 
         wget --no-verbose https://developer.download.nvidia.cn/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         tar xJf cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
+        rm  cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         cd cudnn-linux-x86_64-9.9.0.52_cuda12-archive
-
         sudo cp include/* ${{env.CUDA_PATH}}/include/
         sudo cp lib/* ${{env.CUDA_PATH}}/lib64/
-     
         cd ..
-        rm -f cuda-repo-ubuntu2404-12-9-local_12.9.1-575.57.08-1_amd64.deb
-        rm -f cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         rm -rf cudnn-linux-x86_64-9.9.0.52_cuda12-archive
 
     - name: Checkout Paddle repo
