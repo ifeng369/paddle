@@ -5,7 +5,7 @@ name: paddle-build-linux
 on: 
   push:
     paths: 
-      - "paddle-build-linux.yml"
+      - 'paddle-build-linux.yml'
 
 env:
   PADDLE_VERSION: "3.1.0"
