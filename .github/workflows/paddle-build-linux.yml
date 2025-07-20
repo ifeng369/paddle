@@ -55,6 +55,15 @@ jobs:
       run: |
         df -h
         pwd
+
+        sudo apt remove --purge cmake
+        sudo apt autoremove
+        wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
+        tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
+        rm cmake-3.18.0-Linux-x86_64.tar.gz
+        export PATH=/home/runner/work/paddle/paddle/cmake-3.18.0-Linux-x86_64/bin:$PATH
+        cmake --version
+        
         wget --no-verbose https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
         sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
         wget --no-verbose https://developer.download.nvidia.com/compute/cuda/12.9.1/local_installers/cuda-repo-ubuntu2404-12-9-local_12.9.1-575.57.08-1_amd64.deb
@@ -76,10 +85,6 @@ jobs:
         rm -f cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz
         rm -rf cudnn-linux-x86_64-9.9.0.52_cuda12-archive
 
-        wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
-        tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
-        rm cmake-3.18.0-Linux-x86_64.tar.gz
-        export PATH=/home/runner/work/paddle/paddle/cmake-3.18.0-Linux-x86_64/bin:$PATH
 
     - name: Checkout Paddle repo
       uses: actions/checkout@v4
