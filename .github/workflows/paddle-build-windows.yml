@@ -5,7 +5,7 @@ name: paddle-build-windows
 on: 
   push:
     paths: 
-      - 'paddle-build-windows.yml'
+      - '*-windows.yml'
 
 env:
   PADDLE_VERSION: "3.1.0"
