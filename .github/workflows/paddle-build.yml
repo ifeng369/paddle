@@ -29,7 +29,7 @@ jobs:
           pip install numpy protobuf wheel ninja
         fi
 
-    - uses: Jimver/cuda-toolkit@v0.2.24
+    - uses: Jimver/cuda-toolkit@master
       if: ${{ matrix.cuda != '' }}
       id: cuda-toolkit
       with:
@@ -59,8 +59,8 @@ jobs:
           Invoke-WebRequest -Uri https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-${{ matrix.cudnn }}_cuda$cudaMajor-archive.tar.xz -OutFile cudnn.tar.xz
           mkdir cudnn && tar -xf cudnn.tar.xz --strip-components=1 -C cudnn
 
-          cp cudnn/include/* ${{steps.cuda-toolkit.outputs.CUDA_PATH}}/include/
-          cp cudnn/lib/* ${{steps.cuda-toolkit.outputs.CUDA_PATH}}/lib64/
+          sudo cp cudnn/include/* ${{steps.cuda-toolkit.outputs.CUDA_PATH}}/include/
+          sudo cp cudnn/lib/* ${{steps.cuda-toolkit.outputs.CUDA_PATH}}/lib64/
         } elseif ("${{ runner.os }}" -eq "Windows") {
           Invoke-WebRequest -Uri https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-${{ matrix.cudnn }}_cuda$cudaMajor-archive.zip -OutFile cudnn.zip
           mkdir cudnn && tar -xf cudnn.zip --strip-components=1 -C cudnn
