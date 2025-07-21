@@ -8,7 +8,7 @@ on:
       - '.github/workflows/paddle-build-linux.yml'
 
 env:
-  PADDLE_VERSION: "3.1.0dev"
+  PADDLE_VERSION: "3.1.0"
   PADDLE_BRANCH: "v3.1.0"
   CUDA_PATH: "/usr/local/cuda-12.9"
 jobs:
@@ -87,7 +87,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: PaddlePaddle/Paddle
-        ref: "develop"
+        ref: "release/3.1"
         path: paddle-src
 
     # - name: Apply patches
