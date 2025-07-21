@@ -1,0 +1,10 @@
+services:
+  runner:
+    build: .
+    volumes:
+      - E:/test/paddle/build/script:/build/script
+      - E:/test/paddle/build/dist:/build/python/dist/
+    working_dir: /build
+    environment:
+      - PADDLE_VERSION="3.1.0"
+    command:  /bin/bash -c "while true; do sleep 1000; done"
