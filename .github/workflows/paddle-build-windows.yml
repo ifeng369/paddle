@@ -8,7 +8,7 @@ on:
       - '.github/workflows/paddle-build-windows.yml'
 
 env:
-  PADDLE_VERSION: "3.0.0"
+  PADDLE_VERSION: "v3.1.1"
 
 jobs:
   build-all:
@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: windows-2022, name: win_cu129_cudnn99_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DCUDA_ARCH_NAME=Manual -DON_INFER=ON -DCUDA_ARCH_BIN=120 -DWITH_UNITY_BUILD=ON" }
+          - { os: windows-2022, name: win_cu129_cudnn99_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.11", cmake_flags: "-DWITH_GPU=ON -DWITH_UNITY_BUILD=ON -DWITH_DISTRIBUTE=ON -DCUDA_ARCH_NAME=Manual -DCUDA_ARCH_BIN=120" }
           # - { os: ubuntu-24.04, name: cu129_cudnn910_sm120, cuda: 12.9.0, cudnn: 9.9.0.52,python: "3.10", cmake_flags: "-DWITH_GPU=ON -DWITH_SHARED_PHI=ON -DCUDA_ARCH_NAME=Manual -DON_INFER=ON -DCUDA_ARCH_BIN=120 -DWITH_UNITY_BUILD=ON" }
     steps:
     - uses: actions/setup-python@v5
@@ -57,7 +57,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: PaddlePaddle/Paddle
-        ref: "develop"
+        ref: ${{env.PADDLE_VERSION}}
         path: paddle-src
 
     - uses: ilammy/msvc-dev-cmd@v1
